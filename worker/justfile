@@ -1,0 +1,7 @@
+set dotenv-load
+
+set shell := ["powershell.exe", "-c"]
+
+start:
+  dotnet run
+

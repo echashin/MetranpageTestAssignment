@@ -1,0 +1,22 @@
+<h1>Список проектов</h1>
+
+<div *ngFor="let project of projects|async" class="project">
+  Проект - id: {{project.project.id}}
+
+  <select [ngModel]="project.templateId" (change)="onTemplateSelect(project.project.id, $event)">
+    <option [value]="template.id" *ngFor="let template of templates">Шаблон - id:{{template.id}}</option>
+  </select>
+
+  <button [disabled]="!project.templateId"  (click)="buildProject(project.project.id)">Собрать</button>
+
+
+  <div *ngIf="project.buildedProject">
+    Собранный проект: {{project.buildedProject}}
+  </div>
+
+  <div *ngIf="project.error">
+    Ошибка: {{project.error}}
+  </div>
+</div>
+
+<router-outlet></router-outlet>
